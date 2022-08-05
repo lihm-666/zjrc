@@ -1,4 +1,4 @@
-package com.zjrc.lhm.Service;
+package com.zjrc.lhm.Server;
 
 
 import java.io.IOException;
@@ -26,7 +26,7 @@ public class HttpClientApp
     private static final Logger logger = LoggerFactory.getLogger(HttpClientApp.class);
     public static void main( String[] args )
     {
-        String url="http://127.0.0.1:8881/lhm";
+        String url="http://127.0.0.1:8881/lhm/test";
         String requestStr="httpserver测试练习";
         String contentType="application/json";
         String charset="UTF-8";
@@ -50,12 +50,12 @@ public class HttpClientApp
             managerParams.setConnectionTimeout(30000); // 设置连接超时时间(单位毫秒)
             managerParams.setSoTimeout(30000); // 设置读数据超时时间(单位毫秒)
 
-            method.setRequestEntity(new StringRequestEntity(requestStr, contentType, "utf-8"));
+            method.setRequestEntity(new StringRequestEntity(requestStr, contentType, charset));
 
             client.executeMethod(method);
             System.out.println("返回的状态码为：" +method.getStatusCode());
             if (method.getStatusCode() == HttpStatus.SC_OK) {
-                String resultStr= IOUtils.toString(method.getResponseBodyAsStream(),"utf-8");
+                String resultStr= IOUtils.toString(method.getResponseBodyAsStream(),charset);
                 System.out.println("resultStr:"+resultStr);
                 return resultStr;
 
