@@ -6,6 +6,7 @@ import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.zjrc.lhm.Server.Entry.Student;
+import com.zjrc.lhm.util.JsonTransformation;
 
 import java.io.*;
 import java.net.HttpURLConnection;
@@ -49,30 +50,27 @@ public class HttpHandlerDome implements HttpHandler {
             while ((i = inputStream.read()) != -1){
                 byteArrayOutputStream.write(i);
             }
+            //将获取的json字符串转为bean对象
             String requestMessage = byteArrayOutputStream.toString();
+            Student resquestStudent = JSON.parseObject(requestMessage, Student.class);
+            System.out.println(resquestStudent);
 
 
             System.out.println("请求报文：" + requestMessage);
 
             //返回报文
             String successMessage = "成功!";
-            Student student = new Student();
-            JSONObject jsonObject = getJSONObjectType(student);
-            successMessage = successMessage + jsonObject.toJSONString();
-            httpExchange.sendResponseHeaders(HttpURLConnection.HTTP_OK,successMessage.getBytes("UTF-8").length);
+            Student responeStudent = new Student();
+            responeStudent.setName("李浩铭");
+            responeStudent.setPhone("13193901102");
+            responeStudent.setAddress("杭州");
+            responeStudent.setScore(100);
+            JSONObject jsonObject = JsonTransformation.toJsonObject(successMessage, responeStudent);
+            httpExchange.sendResponseHeaders(HttpURLConnection.HTTP_OK,jsonObject.toJSONString().getBytes("UTF-8").length);
             OutputStream outputStream = httpExchange.getResponseBody();
-            outputStream.write(successMessage.getBytes("UTF-8"));
+            outputStream.write(jsonObject.toJSONString().getBytes("UTF-8"));
             outputStream.close();
             System.out.println("服务结束！");
         }
-    }
-    private JSONObject getJSONObjectType(Student student){
-        student.setName("李浩铭");
-        student.setPhone("13193901102");
-        student.setAddress("杭州");
-        student.setScore(100);
-        String json = JSON.toJSONString(student);
-        JSONObject jsonObject = JSONObject.parseObject(json);
-        return jsonObject;
     }
 }

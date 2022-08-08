@@ -9,6 +9,7 @@ public class Student {
     private String hobby;
     private String phone;
     private int score;
+    private int age;
 
     public String getName() {
         return name;
@@ -66,6 +67,14 @@ public class Student {
         this.score = score;
     }
 
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
     @Override
     public String toString() {
         return "Student{" +
@@ -76,10 +85,11 @@ public class Student {
                 ", hobby='" + hobby + '\'' +
                 ", phone='" + phone + '\'' +
                 ", score=" + score +
+                ", age=" + age +
                 '}';
     }
 
-    public Student(String name, String sex, String address, String email, String hobby, String phone, int score) {
+    public Student(String name, String sex, String address, String email, String hobby, String phone, int score, int age) {
         this.name = name;
         this.sex = sex;
         this.address = address;
@@ -87,6 +97,7 @@ public class Student {
         this.hobby = hobby;
         this.phone = phone;
         this.score = score;
+        this.age = age;
     }
 
     public Student() {

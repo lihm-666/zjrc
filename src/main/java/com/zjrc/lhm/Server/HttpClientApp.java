@@ -30,19 +30,27 @@ public class HttpClientApp
         String requestStr="httpserver测试练习";
         String contentType="application/json";
         String charset="UTF-8";
-        String ss=doPost( url,  requestStr,  contentType,  charset) ;
+        //language=JSON
+        String jsons = "{\n" +
+                "  \"name\": \"刘克寒\",\n" +
+                "  \"age\": 21,\n" +
+                "  \"sex\": \"男\"\n" +
+                "}";
+        String ss=doPost( url,  jsons,  contentType,  charset) ;
+
+
         System.out.println("返回内容为：" +ss);
     }
     /**
      * 执行一个HTTP POST请求，返回请求响应的HTML
      *
      * @param url     请求的URL地址
-     * @param requestStr  请求的查询参数,可以为null
+     * @param jsons  请求的参数,可以为null
      * @param charset 字符集
      * @return 返回请求响应的HTML
      */
-    public static String doPost(String url, String requestStr, String contentType, String charset) {
-        System.out.println("发送报文："+requestStr);
+    public static String doPost(String url, String jsons, String contentType, String charset) {
+        //使用HttpClient发送请求
         HttpClient client = new HttpClient();
         PostMethod method = new PostMethod(url);
         try {
@@ -50,7 +58,7 @@ public class HttpClientApp
             managerParams.setConnectionTimeout(30000); // 设置连接超时时间(单位毫秒)
             managerParams.setSoTimeout(30000); // 设置读数据超时时间(单位毫秒)
 
-            method.setRequestEntity(new StringRequestEntity(requestStr, contentType, charset));
+            method.setRequestEntity(new StringRequestEntity(jsons, contentType, charset));
 
             client.executeMethod(method);
             System.out.println("返回的状态码为：" +method.getStatusCode());
