@@ -2,6 +2,7 @@ package com.zjrc.lhm.Server.Entry;
 
 public class Student {
 
+    private int id;
     private String name;
     private String sex;
     private String address;
@@ -10,6 +11,14 @@ public class Student {
     private String phone;
     private int score;
     private int age;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -78,7 +87,8 @@ public class Student {
     @Override
     public String toString() {
         return "Student{" +
-                "name='" + name + '\'' +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 ", sex='" + sex + '\'' +
                 ", address='" + address + '\'' +
                 ", email='" + email + '\'' +
