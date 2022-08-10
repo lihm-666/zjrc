@@ -1,4 +1,4 @@
-package com.zjrc.lhm.Server.Service;
+package com.zjrc.lhm.Server.Service.Handler;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
@@ -6,14 +6,18 @@ import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.zjrc.lhm.Server.Entry.Student;
+import com.zjrc.lhm.Util.JDBCUtils;
 import com.zjrc.lhm.Util.JsonTransformation;
+import com.zjrc.lhm.Util.ParamMapUtils;
 
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.InetSocketAddress;
 import java.net.URI;
+import java.util.List;
+import java.util.Map;
 
-public class HttpHandlerDome implements HttpHandler {
+public class HttpHandlerQueryById implements HttpHandler {
 
     public void handle(HttpExchange httpExchange) throws IOException {
         //请求地址
@@ -27,13 +31,19 @@ public class HttpHandlerDome implements HttpHandler {
         //url
         URI uri = httpExchange.getRequestURI();
         System.out.println("URL:" + uri);
+        //数据库查询sql
+        String sql = "select * from Student where id = ?";
+
         //客户端的请求是GET类型
         if (requestMethod.equalsIgnoreCase("GET")){
             //设置服务端响应的编码格式
             Headers responseHeaders = httpExchange.getResponseHeaders();
             responseHeaders.set("Content-Type", "text/html;charset=utf-8");
 
-            String response = "这是一个服务！";
+            //执行sql
+            Map<String, String> paramMap = ParamMapUtils.getParamMap(uri.getQuery());
+            List<Student> students = JDBCUtils.executeQuery(sql, new Student(), paramMap.get("id"));
+            String response = JSON.toJSONString(students);
 
             httpExchange.sendResponseHeaders(HttpURLConnection.HTTP_OK,response.getBytes("UTF-8").length);
 
@@ -50,25 +60,20 @@ public class HttpHandlerDome implements HttpHandler {
             while ((i = inputStream.read()) != -1){
                 byteArrayOutputStream.write(i);
             }
-            //将获取的json字符串转为bean对象
+            //获取的数据是json类型
             String requestMessage = byteArrayOutputStream.toString();
-            Student resquestStudent = JSON.parseObject(requestMessage, Student.class);
-            System.out.println(resquestStudent);
-
-
             System.out.println("请求报文：" + requestMessage);
 
+            JSONObject jsonObject = JSONObject.parseObject(requestMessage);
+            String id = jsonObject.getString("id");
+            //执行sql
+            List<Student> students = JDBCUtils.executeQuery(sql, new Student(), id);
+
             //返回报文
-            String successMessage = "成功!";
-            Student responeStudent = new Student();
-            responeStudent.setName("李浩铭");
-            responeStudent.setPhone("13193901102");
-            responeStudent.setAddress("杭州");
-            responeStudent.setScore(100);
-            JSONObject jsonObject = JsonTransformation.toJsonObject(successMessage, responeStudent);
-            httpExchange.sendResponseHeaders(HttpURLConnection.HTTP_OK,jsonObject.toJSONString().getBytes("UTF-8").length);
+            String response = JSON.toJSONString(students);
+            httpExchange.sendResponseHeaders(HttpURLConnection.HTTP_OK,response.getBytes("UTF-8").length);
             OutputStream outputStream = httpExchange.getResponseBody();
-            outputStream.write(jsonObject.toJSONString().getBytes("UTF-8"));
+            outputStream.write(response.getBytes("UTF-8"));
             outputStream.close();
             System.out.println("服务结束！");
         }

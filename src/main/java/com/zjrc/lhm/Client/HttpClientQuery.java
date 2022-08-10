@@ -1,4 +1,4 @@
-package com.zjrc.lhm.Server;
+package com.zjrc.lhm.Client;
 
 
 import java.io.IOException;
@@ -21,25 +21,21 @@ import org.slf4j.LoggerFactory;
  * lhm
  *
  */
-public class HttpClientApp
-{
+public class HttpClientQuery {
     private static final Logger logger = LoggerFactory.getLogger(HttpClientApp.class);
     public static void main( String[] args )
     {
-        String url="http://127.0.0.1:8881/lhm/test";
-        String requestStr="httpserver测试练习";
+        String url="http://127.0.0.1:8881/lhm/query";
         String contentType="application/json";
         String charset="UTF-8";
         //language=JSON
         String jsons = "{\n" +
-                "  \"name\": \"刘克寒\",\n" +
-                "  \"age\": 21,\n" +
-                "  \"sex\": \"男\"\n" +
+                "  \"id\": \"1\"\n" +
                 "}";
-        String ss=doPost( url,  jsons,  contentType,  charset) ;
+        String ss =doPost( url,  jsons,  contentType,  charset) ;
 
 
-        System.out.println("返回内容为：" +ss);
+        System.out.println("返回内容为：" + ss);
     }
     /**
      * 执行一个HTTP POST请求，返回请求响应的HTML
@@ -63,8 +59,7 @@ public class HttpClientApp
             client.executeMethod(method);
             System.out.println("返回的状态码为：" +method.getStatusCode());
             if (method.getStatusCode() == HttpStatus.SC_OK) {
-                String resultStr= IOUtils.toString(method.getResponseBodyAsStream(),charset);
-                System.out.println("resultStr:"+resultStr);
+                String resultStr = IOUtils.toString(method.getResponseBodyAsStream(),charset);
                 return resultStr;
 
             }
@@ -112,4 +107,5 @@ public class HttpClientApp
         return null;
     }
 }
+
 
