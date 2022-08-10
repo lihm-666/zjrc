@@ -1,12 +1,15 @@
 package com.zjrc.lhm.JDBC;
 
 import com.zjrc.lhm.Server.Entry.Student;
+import com.zjrc.lhm.Util.JDBCUtils;
 
 import java.sql.*;
+import java.util.List;
 
 public class DatabaseConfig {
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
 
+        /*
         //1.注册驱动
         Class.forName("com.mysql.cj.jdbc.Driver");
         //2.获取数据库连接对象
@@ -33,5 +36,9 @@ public class DatabaseConfig {
         //7.释放资源
         statement.close();
         connection.close();
+         */
+        String sql = "select * from Student where id = 1";
+        List<Student> list = JDBCUtils.executeQuery(sql,new Student());
+        System.out.println(list.get(0));
     }
 }

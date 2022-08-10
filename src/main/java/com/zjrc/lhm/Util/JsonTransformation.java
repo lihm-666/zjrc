@@ -1,9 +1,8 @@
-package com.zjrc.lhm.util;
+package com.zjrc.lhm.Util;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.zjrc.lhm.Server.Entry.JsonObjectDome;
-import com.zjrc.lhm.Server.Entry.Student;
 
 public class JsonTransformation {
     //bean转换为json对象

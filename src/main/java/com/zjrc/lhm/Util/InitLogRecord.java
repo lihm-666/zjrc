@@ -1,4 +1,4 @@
-package com.zjrc.lhm.util;
+package com.zjrc.lhm.Util;
 
 import org.apache.log4j.PropertyConfigurator;
 

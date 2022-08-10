@@ -6,7 +6,7 @@ import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.zjrc.lhm.Server.Entry.Student;
-import com.zjrc.lhm.util.JsonTransformation;
+import com.zjrc.lhm.Util.JsonTransformation;
 
 import java.io.*;
 import java.net.HttpURLConnection;

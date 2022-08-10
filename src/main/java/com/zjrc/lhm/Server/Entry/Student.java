@@ -2,21 +2,20 @@ package com.zjrc.lhm.Server.Entry;
 
 public class Student {
 
-    private int id;
+    private Integer id;
     private String name;
     private String sex;
     private String address;
     private String email;
     private String hobby;
     private String phone;
-    private int score;
-    private int age;
+    private Integer score;
+    private Integer age;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
-
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -68,19 +67,19 @@ public class Student {
         this.phone = phone;
     }
 
-    public int getScore() {
+    public Integer getScore() {
         return score;
     }
 
-    public void setScore(int score) {
+    public void setScore(Integer score) {
         this.score = score;
     }
 
-    public int getAge() {
+    public Integer getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(Integer age) {
         this.age = age;
     }
 
@@ -99,16 +98,18 @@ public class Student {
                 '}';
     }
 
-    public Student(String name, String sex, String address, String email, String hobby, String phone, int score, int age) {
+    public Student(String name, Integer age, String sex, String address, String email, String hobby, String phone, Integer score) {
         this.name = name;
+        this.age = age;
         this.sex = sex;
         this.address = address;
         this.email = email;
         this.hobby = hobby;
         this.phone = phone;
         this.score = score;
-        this.age = age;
+
     }
+
 
     public Student() {
     }
