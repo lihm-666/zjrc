@@ -1,9 +1,7 @@
 package com.zjrc.lhm.Server;
 
 import com.sun.net.httpserver.HttpServer;
-import com.zjrc.lhm.Server.Service.Handler.HttpHandlerAdd;
-import com.zjrc.lhm.Server.Service.Handler.HttpHandlerInsert;
-import com.zjrc.lhm.Server.Service.Handler.HttpHandlerQueryById;
+import com.zjrc.lhm.Server.Service.Handler.*;
 import com.zjrc.lhm.Util.InitLogRecord;
 
 import java.io.IOException;
@@ -22,9 +20,11 @@ public class ThreadHttpServer {
         InitLogRecord.initLog();
         try{
             httpServer = HttpServer.create(new InetSocketAddress(port),0);
-            httpServer.createContext(httpContext + "/test",new HttpHandlerInsert());
+            httpServer.createContext(httpContext + "/insert",new HttpHandlerInsert());
             httpServer.createContext(httpContext + "/add",new HttpHandlerAdd());
-            httpServer.createContext(httpContext + "/query",new HttpHandlerQueryById());
+            httpServer.createContext(httpContext + "/query",new HttpHandlerSelect());
+            httpServer.createContext(httpContext + "/update",new HttpHandlerUpdate());
+            httpServer.createContext(httpContext + "/delete",new HttpHandlerDelete());
             //设置并发数
             ExecutorService executor = Executors.newFixedThreadPool(nThread);
             httpServer.setExecutor(executor);

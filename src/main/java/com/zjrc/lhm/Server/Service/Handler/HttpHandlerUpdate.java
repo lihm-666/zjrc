@@ -18,12 +18,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class HttpHandlerInsert implements HttpHandler {
+public class HttpHandlerUpdate implements HttpHandler {
 
     public void handle(HttpExchange httpExchange) throws IOException {
         //请求地址
         RequestInfoUtils.requestInfo(httpExchange);
-        //i请求方式
+        //请求方式
         String requestMethod = httpExchange.getRequestMethod();
         System.out.println("请求方式：" + requestMethod);
         //url
@@ -58,7 +58,7 @@ public class HttpHandlerInsert implements HttpHandler {
             Student student = JSON.parseObject(requestMessage, Student.class);
 
             //插入到数据库
-            String sql = "insert into Student (name,age,sex,address,email,hobby,phone,score) values(?,?,?,?,?,?,?,?)";
+            String sql = "update Student set name = ?, age = ?, sex = ?, address = ?, email = ?, hobby = ?, phone = ?, score = ? where id = ?";
             Connection connection = JDBCUtils.getConnection();
             try {
                 PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -70,16 +70,17 @@ public class HttpHandlerInsert implements HttpHandler {
                 preparedStatement.setObject(6,student.getHobby());
                 preparedStatement.setObject(7,student.getPhone());
                 preparedStatement.setObject(8,student.getScore());
+                preparedStatement.setObject(9,student.getId());
 
                 int success = preparedStatement.executeUpdate();
 
                 String message = "";
                 if (success > 0){
                     //返回报文
-                    message = "成功插入数据!";
+                    message = "修改数据成功!";
 
                 }else {
-                    message = "插入失败！";
+                    message = "修改数据失败！";
                 }
                 httpExchange.sendResponseHeaders(HttpURLConnection.HTTP_OK,message.getBytes("UTF-8").length);
                 OutputStream outputStream = httpExchange.getResponseBody();

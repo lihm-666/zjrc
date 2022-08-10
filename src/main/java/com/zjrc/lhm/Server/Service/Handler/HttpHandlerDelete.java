@@ -7,32 +7,30 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.zjrc.lhm.Server.Entry.Student;
 import com.zjrc.lhm.Util.JDBCUtils;
-import com.zjrc.lhm.Util.JsonTransformation;
 import com.zjrc.lhm.Util.ParamMapUtils;
+import com.zjrc.lhm.Util.RequestInfoUtils;
 
 import java.io.*;
 import java.net.HttpURLConnection;
-import java.net.InetSocketAddress;
 import java.net.URI;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
-public class HttpHandlerQueryById implements HttpHandler {
-
+public class HttpHandlerDelete implements HttpHandler {
     public void handle(HttpExchange httpExchange) throws IOException {
         //请求地址
-        InetSocketAddress inetSocketAddress = httpExchange.getRemoteAddress();
-        System.out.println("请求IP地址：" + inetSocketAddress);
-        System.out.println("请求HOST：" + inetSocketAddress.getHostName());
-        System.out.println("请求端口：" + inetSocketAddress.getPort());
-        //i请求方式
+        RequestInfoUtils.requestInfo(httpExchange);
+        //请求方式
         String requestMethod = httpExchange.getRequestMethod();
         System.out.println("请求方式：" + requestMethod);
         //url
         URI uri = httpExchange.getRequestURI();
         System.out.println("URL:" + uri);
         //数据库查询sql
-        String sql = "select * from Student where id = ?";
+        String sql = "delete from Student where id = ?";
 
         //客户端的请求是GET类型
         if (requestMethod.equalsIgnoreCase("GET")){
@@ -42,16 +40,29 @@ public class HttpHandlerQueryById implements HttpHandler {
 
             //执行sql
             Map<String, String> paramMap = ParamMapUtils.getParamMap(uri.getQuery());
-            List<Student> students = JDBCUtils.executeQuery(sql, new Student(), paramMap.get("id"));
-            String response = JSON.toJSONString(students);
+            Connection connection = JDBCUtils.getConnection();
+            PreparedStatement preparedStatement = null;
+            int count;
+            try {
+                preparedStatement = connection.prepareStatement(sql);
+                preparedStatement.setObject(1,paramMap.get("id"));
+                count = preparedStatement.executeUpdate();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+            String message = "";
+            if (count > 0)
+                message = "删除成功！";
+            else message = "删除失败";
 
-            httpExchange.sendResponseHeaders(HttpURLConnection.HTTP_OK,response.getBytes("UTF-8").length);
+            httpExchange.sendResponseHeaders(HttpURLConnection.HTTP_OK,message.getBytes("UTF-8").length);
 
             OutputStream responseBody = httpExchange.getResponseBody();
             OutputStreamWriter writer = new OutputStreamWriter(responseBody,"UTF-8");
-            writer.write(response);
+            writer.write(message);
             writer.close();
             responseBody.close();
+            JDBCUtils.close(preparedStatement,connection);
         }else {
             //请求报文
             InputStream inputStream = httpExchange.getRequestBody();
@@ -67,14 +78,27 @@ public class HttpHandlerQueryById implements HttpHandler {
             JSONObject jsonObject = JSONObject.parseObject(requestMessage);
             String id = jsonObject.getString("id");
             //执行sql
-            List<Student> students = JDBCUtils.executeQuery(sql, new Student(), id);
+            Connection connection = JDBCUtils.getConnection();
+            PreparedStatement preparedStatement = null;
+            int count;
+            try {
+                preparedStatement = connection.prepareStatement(sql);
+                preparedStatement.setObject(1,id);
+                count = preparedStatement.executeUpdate();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+            String message = "";
+            if (count > 0)
+                message = "删除成功！";
+            else message = "删除失败";
 
             //返回报文
-            String response = JSON.toJSONString(students);
-            httpExchange.sendResponseHeaders(HttpURLConnection.HTTP_OK,response.getBytes("UTF-8").length);
+            httpExchange.sendResponseHeaders(HttpURLConnection.HTTP_OK,message.getBytes("UTF-8").length);
             OutputStream outputStream = httpExchange.getResponseBody();
-            outputStream.write(response.getBytes("UTF-8"));
+            outputStream.write(message.getBytes("UTF-8"));
             outputStream.close();
+            JDBCUtils.close(preparedStatement,connection);
             System.out.println("服务结束！");
         }
     }

@@ -21,20 +21,24 @@ import org.slf4j.LoggerFactory;
  * lhm
  *
  */
-public class HttpClientApp
-{
-    private static final Logger logger = LoggerFactory.getLogger(HttpClientApp.class);
+public class HttpClientUpdate {
+    private static final Logger logger = LoggerFactory.getLogger(HttpClientInsert.class);
     public static void main( String[] args )
     {
-        String url="http://127.0.0.1:8881/lhm/test";
-        String requestStr="httpserver测试练习";
+        String url="http://127.0.0.1:8881/lhm/update";
         String contentType="application/json";
         String charset="UTF-8";
         //language=JSON
         String jsons = "{\n" +
-                "  \"name\": \"刘克寒\",\n" +
-                "  \"age\": 21,\n" +
-                "  \"sex\": \"男\"\n" +
+                "  \"id\": 2,\n" +
+                "  \"name\": \"李纪龙\",\n" +
+                "  \"age\": 22,\n" +
+                "  \"sex\": \"男\",\n" +
+                "  \"address\": \"河南省郑州市\",\n" +
+                "  \"email\": \"sfwengineerLJL@163.com\",\n" +
+                "  \"hobby\": \"编代码和看动漫\",\n" +
+                "  \"phone\": \"17719102420\",\n" +
+                "  \"score\": 100\n" +
                 "}";
         String ss=doPost( url,  jsons,  contentType,  charset) ;
 

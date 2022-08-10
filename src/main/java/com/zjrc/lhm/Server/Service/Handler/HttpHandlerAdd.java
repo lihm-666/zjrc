@@ -4,6 +4,7 @@ import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.zjrc.lhm.Util.ParamMapUtils;
+import com.zjrc.lhm.Util.RequestInfoUtils;
 
 import java.io.*;
 import java.net.HttpURLConnection;
@@ -20,10 +21,7 @@ public class HttpHandlerAdd implements HttpHandler {
 
     public void handle(HttpExchange httpExchange) {
         //请求地址
-        InetSocketAddress inetSocketAddress = httpExchange.getRemoteAddress();
-        System.out.println("请求IP地址：" + inetSocketAddress);
-        System.out.println("请求HOST：" + inetSocketAddress.getHostName());
-        System.out.println("请求端口：" + inetSocketAddress.getPort());
+        RequestInfoUtils.requestInfo(httpExchange);
         //i请求方式
         String requestMethod = httpExchange.getRequestMethod();
         System.out.println("请求方式：" + requestMethod);

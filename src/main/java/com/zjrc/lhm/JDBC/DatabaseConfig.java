@@ -37,8 +37,28 @@ public class DatabaseConfig {
         statement.close();
         connection.close();
          */
-        String sql = "select * from Student where id = 1";
-        List<Student> list = JDBCUtils.executeQuery(sql,new Student());
-        System.out.println(list.get(0));
+        Student student = new Student();
+        student.setName("刘克寒");
+        student.setAge(23);
+        student.setHobby("永劫无间和云顶之奕");
+        student.setSex("男");
+        String sql = "insert into Student (name,age,sex,address,email,hobby,phone,score) values(?,?,?,?,?,?,?,?)";
+        Connection connection = JDBCUtils.getConnection();
+
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setObject(1,student.getName());
+        preparedStatement.setObject(2,student.getAge());
+        preparedStatement.setObject(3,student.getSex());
+        preparedStatement.setObject(4,student.getAddress());
+        preparedStatement.setObject(5,student.getEmail());
+        preparedStatement.setObject(6,student.getHobby());
+        preparedStatement.setObject(7,student.getPhone());
+        preparedStatement.setObject(8,student.getScore());
+
+        int success = preparedStatement.executeUpdate();
+
+        JDBCUtils.close(preparedStatement,connection);
+
+        System.out.println(success);
     }
 }
