@@ -21,11 +21,11 @@ import org.slf4j.LoggerFactory;
  * lhm
  *
  */
-public class HttpClientQuery {
+public class HttpClientSelect {
     private static final Logger logger = LoggerFactory.getLogger(HttpClientInsert.class);
     public static void main( String[] args )
     {
-        String url="http://127.0.0.1:8881/lhm/query";
+        String url="http://127.0.0.1:8881/lhm/select";
         String contentType="application/json";
         String charset="UTF-8";
         //language=JSON

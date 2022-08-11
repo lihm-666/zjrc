@@ -3752,8 +3752,8 @@ org.apache.commons.httpclient.NoHttpResponseException: The server 127.0.0.1 fail
 	at org.apache.commons.httpclient.HttpMethodDirector.executeMethod(HttpMethodDirector.java:171)
 	at org.apache.commons.httpclient.HttpClient.executeMethod(HttpClient.java:397)
 	at org.apache.commons.httpclient.HttpClient.executeMethod(HttpClient.java:323)
-	at com.zjrc.lhm.Client.HttpClientQuery.doPost(HttpClientQuery.java:60)
-	at com.zjrc.lhm.Client.HttpClientQuery.main(HttpClientQuery.java:36)
+	at com.zjrc.lhm.Client.HttpClientSelect.doPost(HttpClientQuery.java:60)
+	at com.zjrc.lhm.Client.HttpClientSelect.main(HttpClientQuery.java:36)
 INFO main org.apache.commons.httpclient.HttpMethodDirector - Retrying request
 DEBUG main org.apache.commons.httpclient.HttpMethodDirector - Attempt number 2 to process request
 DEBUG main org.apache.commons.httpclient.HttpConnection - enter HttpConnection.open()
@@ -3828,8 +3828,8 @@ org.apache.commons.httpclient.NoHttpResponseException: The server 127.0.0.1 fail
 	at org.apache.commons.httpclient.HttpMethodDirector.executeMethod(HttpMethodDirector.java:171)
 	at org.apache.commons.httpclient.HttpClient.executeMethod(HttpClient.java:397)
 	at org.apache.commons.httpclient.HttpClient.executeMethod(HttpClient.java:323)
-	at com.zjrc.lhm.Client.HttpClientQuery.doPost(HttpClientQuery.java:60)
-	at com.zjrc.lhm.Client.HttpClientQuery.main(HttpClientQuery.java:36)
+	at com.zjrc.lhm.Client.HttpClientSelect.doPost(HttpClientQuery.java:60)
+	at com.zjrc.lhm.Client.HttpClientSelect.main(HttpClientQuery.java:36)
 INFO main org.apache.commons.httpclient.HttpMethodDirector - Retrying request
 DEBUG main org.apache.commons.httpclient.HttpMethodDirector - Attempt number 3 to process request
 DEBUG main org.apache.commons.httpclient.HttpConnection - enter HttpConnection.open()
@@ -3904,8 +3904,8 @@ org.apache.commons.httpclient.NoHttpResponseException: The server 127.0.0.1 fail
 	at org.apache.commons.httpclient.HttpMethodDirector.executeMethod(HttpMethodDirector.java:171)
 	at org.apache.commons.httpclient.HttpClient.executeMethod(HttpClient.java:397)
 	at org.apache.commons.httpclient.HttpClient.executeMethod(HttpClient.java:323)
-	at com.zjrc.lhm.Client.HttpClientQuery.doPost(HttpClientQuery.java:60)
-	at com.zjrc.lhm.Client.HttpClientQuery.main(HttpClientQuery.java:36)
+	at com.zjrc.lhm.Client.HttpClientSelect.doPost(HttpClientQuery.java:60)
+	at com.zjrc.lhm.Client.HttpClientSelect.main(HttpClientQuery.java:36)
 INFO main org.apache.commons.httpclient.HttpMethodDirector - Retrying request
 DEBUG main org.apache.commons.httpclient.HttpMethodDirector - Attempt number 4 to process request
 DEBUG main org.apache.commons.httpclient.HttpConnection - enter HttpConnection.open()
@@ -4087,8 +4087,8 @@ org.apache.commons.httpclient.NoHttpResponseException: The server 127.0.0.1 fail
 	at org.apache.commons.httpclient.HttpMethodDirector.executeMethod(HttpMethodDirector.java:171)
 	at org.apache.commons.httpclient.HttpClient.executeMethod(HttpClient.java:397)
 	at org.apache.commons.httpclient.HttpClient.executeMethod(HttpClient.java:323)
-	at com.zjrc.lhm.Client.HttpClientQuery.doPost(HttpClientQuery.java:60)
-	at com.zjrc.lhm.Client.HttpClientQuery.main(HttpClientQuery.java:36)
+	at com.zjrc.lhm.Client.HttpClientSelect.doPost(HttpClientQuery.java:60)
+	at com.zjrc.lhm.Client.HttpClientSelect.main(HttpClientQuery.java:36)
 INFO main org.apache.commons.httpclient.HttpMethodDirector - Retrying request
 DEBUG main org.apache.commons.httpclient.HttpMethodDirector - Attempt number 2 to process request
 DEBUG main org.apache.commons.httpclient.HttpConnection - enter HttpConnection.open()
@@ -4163,8 +4163,8 @@ org.apache.commons.httpclient.NoHttpResponseException: The server 127.0.0.1 fail
 	at org.apache.commons.httpclient.HttpMethodDirector.executeMethod(HttpMethodDirector.java:171)
 	at org.apache.commons.httpclient.HttpClient.executeMethod(HttpClient.java:397)
 	at org.apache.commons.httpclient.HttpClient.executeMethod(HttpClient.java:323)
-	at com.zjrc.lhm.Client.HttpClientQuery.doPost(HttpClientQuery.java:60)
-	at com.zjrc.lhm.Client.HttpClientQuery.main(HttpClientQuery.java:36)
+	at com.zjrc.lhm.Client.HttpClientSelect.doPost(HttpClientQuery.java:60)
+	at com.zjrc.lhm.Client.HttpClientSelect.main(HttpClientQuery.java:36)
 INFO main org.apache.commons.httpclient.HttpMethodDirector - Retrying request
 DEBUG main org.apache.commons.httpclient.HttpMethodDirector - Attempt number 3 to process request
 DEBUG main org.apache.commons.httpclient.HttpConnection - enter HttpConnection.open()
@@ -4239,8 +4239,8 @@ org.apache.commons.httpclient.NoHttpResponseException: The server 127.0.0.1 fail
 	at org.apache.commons.httpclient.HttpMethodDirector.executeMethod(HttpMethodDirector.java:171)
 	at org.apache.commons.httpclient.HttpClient.executeMethod(HttpClient.java:397)
 	at org.apache.commons.httpclient.HttpClient.executeMethod(HttpClient.java:323)
-	at com.zjrc.lhm.Client.HttpClientQuery.doPost(HttpClientQuery.java:60)
-	at com.zjrc.lhm.Client.HttpClientQuery.main(HttpClientQuery.java:36)
+	at com.zjrc.lhm.Client.HttpClientSelect.doPost(HttpClientQuery.java:60)
+	at com.zjrc.lhm.Client.HttpClientSelect.main(HttpClientQuery.java:36)
 INFO main org.apache.commons.httpclient.HttpMethodDirector - Retrying request
 DEBUG main org.apache.commons.httpclient.HttpMethodDirector - Attempt number 4 to process request
 DEBUG main org.apache.commons.httpclient.HttpConnection - enter HttpConnection.open()
@@ -4422,8 +4422,8 @@ org.apache.commons.httpclient.NoHttpResponseException: The server 127.0.0.1 fail
 	at org.apache.commons.httpclient.HttpMethodDirector.executeMethod(HttpMethodDirector.java:171)
 	at org.apache.commons.httpclient.HttpClient.executeMethod(HttpClient.java:397)
 	at org.apache.commons.httpclient.HttpClient.executeMethod(HttpClient.java:323)
-	at com.zjrc.lhm.Client.HttpClientQuery.doPost(HttpClientQuery.java:60)
-	at com.zjrc.lhm.Client.HttpClientQuery.main(HttpClientQuery.java:36)
+	at com.zjrc.lhm.Client.HttpClientSelect.doPost(HttpClientQuery.java:60)
+	at com.zjrc.lhm.Client.HttpClientSelect.main(HttpClientQuery.java:36)
 INFO main org.apache.commons.httpclient.HttpMethodDirector - Retrying request
 DEBUG main org.apache.commons.httpclient.HttpMethodDirector - Attempt number 2 to process request
 DEBUG main org.apache.commons.httpclient.HttpConnection - enter HttpConnection.open()
@@ -4498,8 +4498,8 @@ org.apache.commons.httpclient.NoHttpResponseException: The server 127.0.0.1 fail
 	at org.apache.commons.httpclient.HttpMethodDirector.executeMethod(HttpMethodDirector.java:171)
 	at org.apache.commons.httpclient.HttpClient.executeMethod(HttpClient.java:397)
 	at org.apache.commons.httpclient.HttpClient.executeMethod(HttpClient.java:323)
-	at com.zjrc.lhm.Client.HttpClientQuery.doPost(HttpClientQuery.java:60)
-	at com.zjrc.lhm.Client.HttpClientQuery.main(HttpClientQuery.java:36)
+	at com.zjrc.lhm.Client.HttpClientSelect.doPost(HttpClientQuery.java:60)
+	at com.zjrc.lhm.Client.HttpClientSelect.main(HttpClientQuery.java:36)
 INFO main org.apache.commons.httpclient.HttpMethodDirector - Retrying request
 DEBUG main org.apache.commons.httpclient.HttpMethodDirector - Attempt number 3 to process request
 DEBUG main org.apache.commons.httpclient.HttpConnection - enter HttpConnection.open()
@@ -4574,8 +4574,8 @@ org.apache.commons.httpclient.NoHttpResponseException: The server 127.0.0.1 fail
 	at org.apache.commons.httpclient.HttpMethodDirector.executeMethod(HttpMethodDirector.java:171)
 	at org.apache.commons.httpclient.HttpClient.executeMethod(HttpClient.java:397)
 	at org.apache.commons.httpclient.HttpClient.executeMethod(HttpClient.java:323)
-	at com.zjrc.lhm.Client.HttpClientQuery.doPost(HttpClientQuery.java:60)
-	at com.zjrc.lhm.Client.HttpClientQuery.main(HttpClientQuery.java:36)
+	at com.zjrc.lhm.Client.HttpClientSelect.doPost(HttpClientQuery.java:60)
+	at com.zjrc.lhm.Client.HttpClientSelect.main(HttpClientQuery.java:36)
 INFO main org.apache.commons.httpclient.HttpMethodDirector - Retrying request
 DEBUG main org.apache.commons.httpclient.HttpMethodDirector - Attempt number 4 to process request
 DEBUG main org.apache.commons.httpclient.HttpConnection - enter HttpConnection.open()
@@ -4757,8 +4757,8 @@ org.apache.commons.httpclient.NoHttpResponseException: The server 127.0.0.1 fail
 	at org.apache.commons.httpclient.HttpMethodDirector.executeMethod(HttpMethodDirector.java:171)
 	at org.apache.commons.httpclient.HttpClient.executeMethod(HttpClient.java:397)
 	at org.apache.commons.httpclient.HttpClient.executeMethod(HttpClient.java:323)
-	at com.zjrc.lhm.Client.HttpClientQuery.doPost(HttpClientQuery.java:60)
-	at com.zjrc.lhm.Client.HttpClientQuery.main(HttpClientQuery.java:36)
+	at com.zjrc.lhm.Client.HttpClientSelect.doPost(HttpClientQuery.java:60)
+	at com.zjrc.lhm.Client.HttpClientSelect.main(HttpClientQuery.java:36)
 INFO main org.apache.commons.httpclient.HttpMethodDirector - Retrying request
 DEBUG main org.apache.commons.httpclient.HttpMethodDirector - Attempt number 2 to process request
 DEBUG main org.apache.commons.httpclient.HttpConnection - enter HttpConnection.open()
@@ -4833,8 +4833,8 @@ org.apache.commons.httpclient.NoHttpResponseException: The server 127.0.0.1 fail
 	at org.apache.commons.httpclient.HttpMethodDirector.executeMethod(HttpMethodDirector.java:171)
 	at org.apache.commons.httpclient.HttpClient.executeMethod(HttpClient.java:397)
 	at org.apache.commons.httpclient.HttpClient.executeMethod(HttpClient.java:323)
-	at com.zjrc.lhm.Client.HttpClientQuery.doPost(HttpClientQuery.java:60)
-	at com.zjrc.lhm.Client.HttpClientQuery.main(HttpClientQuery.java:36)
+	at com.zjrc.lhm.Client.HttpClientSelect.doPost(HttpClientQuery.java:60)
+	at com.zjrc.lhm.Client.HttpClientSelect.main(HttpClientQuery.java:36)
 INFO main org.apache.commons.httpclient.HttpMethodDirector - Retrying request
 DEBUG main org.apache.commons.httpclient.HttpMethodDirector - Attempt number 3 to process request
 DEBUG main org.apache.commons.httpclient.HttpConnection - enter HttpConnection.open()
@@ -4909,8 +4909,8 @@ org.apache.commons.httpclient.NoHttpResponseException: The server 127.0.0.1 fail
 	at org.apache.commons.httpclient.HttpMethodDirector.executeMethod(HttpMethodDirector.java:171)
 	at org.apache.commons.httpclient.HttpClient.executeMethod(HttpClient.java:397)
 	at org.apache.commons.httpclient.HttpClient.executeMethod(HttpClient.java:323)
-	at com.zjrc.lhm.Client.HttpClientQuery.doPost(HttpClientQuery.java:60)
-	at com.zjrc.lhm.Client.HttpClientQuery.main(HttpClientQuery.java:36)
+	at com.zjrc.lhm.Client.HttpClientSelect.doPost(HttpClientQuery.java:60)
+	at com.zjrc.lhm.Client.HttpClientSelect.main(HttpClientQuery.java:36)
 INFO main org.apache.commons.httpclient.HttpMethodDirector - Retrying request
 DEBUG main org.apache.commons.httpclient.HttpMethodDirector - Attempt number 4 to process request
 DEBUG main org.apache.commons.httpclient.HttpConnection - enter HttpConnection.open()

@@ -22,7 +22,7 @@ public class ThreadHttpServer {
             httpServer = HttpServer.create(new InetSocketAddress(port),0);
             httpServer.createContext(httpContext + "/insert",new HttpHandlerInsert());
             httpServer.createContext(httpContext + "/add",new HttpHandlerAdd());
-            httpServer.createContext(httpContext + "/query",new HttpHandlerSelect());
+            httpServer.createContext(httpContext + "/select",new HttpHandlerSelect());
             httpServer.createContext(httpContext + "/update",new HttpHandlerUpdate());
             httpServer.createContext(httpContext + "/delete",new HttpHandlerDelete());
             //设置并发数

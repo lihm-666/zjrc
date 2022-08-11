@@ -40,10 +40,18 @@ public class HttpHandlerInsert implements HttpHandler {
             httpExchange.sendResponseHeaders(HttpURLConnection.HTTP_LENGTH_REQUIRED,response.getBytes("UTF-8").length);
 
             OutputStream responseBody = httpExchange.getResponseBody();
-            OutputStreamWriter writer = new OutputStreamWriter(responseBody,"UTF-8");
-            writer.write(response);
-            writer.close();
-            responseBody.close();
+            OutputStreamWriter writer = null;
+            try {
+                writer = new OutputStreamWriter(responseBody,"UTF-8");
+                writer.write(response);
+            } catch (UnsupportedEncodingException e) {
+                throw new RuntimeException(e);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            } finally {
+                writer.close();
+                responseBody.close();
+            }
         }else {
             //请求报文
             InputStream inputStream = httpExchange.getRequestBody();
@@ -60,6 +68,7 @@ public class HttpHandlerInsert implements HttpHandler {
             //插入到数据库
             String sql = "insert into Student (name,age,sex,address,email,hobby,phone,score) values(?,?,?,?,?,?,?,?)";
             Connection connection = JDBCUtils.getConnection();
+            OutputStream outputStream = null;
             try {
                 PreparedStatement preparedStatement = connection.prepareStatement(sql);
                 preparedStatement.setObject(1,student.getName());
@@ -82,14 +91,16 @@ public class HttpHandlerInsert implements HttpHandler {
                     message = "插入失败！";
                 }
                 httpExchange.sendResponseHeaders(HttpURLConnection.HTTP_OK,message.getBytes("UTF-8").length);
-                OutputStream outputStream = httpExchange.getResponseBody();
+                outputStream = httpExchange.getResponseBody();
                 outputStream.write(message.getBytes("UTF-8"));
-                outputStream.close();
+
                 JDBCUtils.close(preparedStatement,connection);
                 System.out.println("服务结束！");
 
             } catch (SQLException e) {
                 throw new RuntimeException(e);
+            }finally {
+                outputStream.close();
             }
 
 
