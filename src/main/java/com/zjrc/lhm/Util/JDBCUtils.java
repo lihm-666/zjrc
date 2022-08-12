@@ -1,8 +1,15 @@
 package com.zjrc.lhm.Util;
 
+import com.alibaba.nacos.api.NacosFactory;
+import com.alibaba.nacos.api.PropertyKeyConst;
+import com.alibaba.nacos.api.config.ConfigService;
+import com.alibaba.nacos.api.exception.NacosException;
 import com.zjrc.lhm.Interface.Constants;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Method;
 import java.sql.*;
 import java.util.ArrayList;
@@ -13,6 +20,8 @@ public class JDBCUtils {
 
     //配置对象
     private static Properties prop = new Properties();
+    private static String dataId = null;
+    private static String group = null;
     /*
      * jdbc变量
      */
@@ -31,9 +40,16 @@ public class JDBCUtils {
      */
     static {
         try {
-            //动态获取配置文件的路径
-            InputStream in = JDBCUtils.class.getClassLoader().getResourceAsStream("Jdbc.properties");
-            prop.load(in);//加载键值对信息
+            //nacos远程地址
+            String serverAddr = "192.168.44.128:8848";
+            //Data Id
+            dataId = "Nacos_Maven_lhm_Jdbc.properties";
+            group = "zjrc_lhm_GROUP";
+            prop.put(PropertyKeyConst.SERVER_ADDR, serverAddr);
+            ConfigService configService = NacosFactory.createConfigService(prop);
+            String content = configService.getConfig(dataId, group, 5000);
+            InputStream inputStream = new ByteArrayInputStream(content.getBytes("utf-8"));
+            prop.load(inputStream);//加载键值对信息
             /*
              * Constants常量接口中保存了很多常量，这些常量的值就是配置文件k-v数据的键
              *
@@ -46,6 +62,7 @@ public class JDBCUtils {
              * 加载驱动，静态代码块只执行一次，驱动只加载一次（加载驱动很耗性能的）
              */
             Class.forName(driver);//加载驱动
+            NacosListenerUtils.listener(configService,dataId,group);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -151,5 +168,24 @@ public class JDBCUtils {
         }
         return list;
 
+    }
+    //配置文件更改时，重新加载驱动
+    public static void reStartJdbc() throws IOException, NacosException, ClassNotFoundException {
+        ConfigService configService = NacosFactory.createConfigService(prop);
+        String content = configService.getConfig(dataId, group, 5000);
+        InputStream inputStream = new ByteArrayInputStream(content.getBytes("utf-8"));
+        prop.load(inputStream);//加载键值对信息
+        /*
+         * Constants常量接口中保存了很多常量，这些常量的值就是配置文件k-v数据的键
+         *
+         */
+        driver = prop.getProperty(Constants.JDBC_DRIVER);
+        url = prop.getProperty(Constants.JDBC_URL);
+        user = prop.getProperty(Constants.JDBC_USER);
+        password = prop.getProperty(Constants.JDBC_PASSWORD);
+        /*
+         * 加载驱动，静态代码块只执行一次，驱动只加载一次（加载驱动很耗性能的）
+         */
+        Class.forName(driver);//加载驱动
     }
 }

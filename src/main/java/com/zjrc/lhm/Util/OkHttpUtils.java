@@ -131,6 +131,7 @@ public class OkHttpUtils {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            //删掉多余的&
             urlBuilder.deleteCharAt(urlBuilder.length() - 1);
         }
         request.url(urlBuilder.toString());

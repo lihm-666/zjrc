@@ -2,7 +2,7 @@ package com.zjrc.lhm.Server;
 
 import com.sun.net.httpserver.HttpServer;
 import com.zjrc.lhm.Server.Service.Handler.*;
-import com.zjrc.lhm.Util.InitLogRecord;
+import com.zjrc.lhm.Util.InitLogRecordUtils;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -17,7 +17,7 @@ public class ThreadHttpServer {
 
     public static void main(String[] args) {
         HttpServer httpServer;
-        InitLogRecord.initLog();
+        InitLogRecordUtils.initLog();
         try{
             httpServer = HttpServer.create(new InetSocketAddress(port),0);
             httpServer.createContext(httpContext + "/insert",new HttpHandlerInsert());
@@ -33,6 +33,7 @@ public class ThreadHttpServer {
             System.out.println("服务器启动端口：" + port);
             System.out.println("服务器根节点：" + httpContext);
             System.out.println("服务器并发数：" + nThread);
+
         }catch (IOException e){
             e.printStackTrace();
         }
